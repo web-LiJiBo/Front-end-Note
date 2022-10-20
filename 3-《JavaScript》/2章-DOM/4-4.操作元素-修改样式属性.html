@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改样式属性-(大小，位置，颜色等)</title>
+    <!-- 
+
+        1.element.style   行内样式操作
+
+        2.element.className   类名样式操作（样式多）
+
+     -->
+    <style>
+        .div1 {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .div2 {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(206, 41, 69);
+            color: #fff;
+            font-size: 25px;
+            margin-top: 100px;
+        }
+        .change {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(206, 41, 69);
+            color: #fff;
+            font-size: 25px;
+            margin-top: 300px;
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2">李吉脖</div>
+
+    <script>
+        
+        var div1 = document.querySelector('.div1');
+        var div2 = document.querySelector('.div2');
+        
+        div1.onclick = function() {
+            //'驼峰命名法';
+            this.style.backgroundColor = 'purple';
+        }
+
+        div2.onclick = function() {
+            //1.这种情况直接覆盖原来的，不保留原来的
+            this.className = 'change';
+
+            //2.如果既保留原来的，又要保留现在的
+            this.className = 'change div2';
+        }
+
+    </script>
+</body>
+</html>

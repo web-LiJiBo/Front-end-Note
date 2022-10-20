@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作元素-修改元素属性 (href,src,id,alt等等)</title>
+    <style>
+        img {
+            height: 300px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button id="red">红色</button>
+    <button id="green">绿色</button>
+    <img src="images/red.png" alt="" title="红色">
+
+    <script>
+        var red1 = document.getElementById('red');
+        var green1 = document.getElementById('green');
+        var img1 = document.querySelector('img');
+
+        red1.onclick = function() {
+            img1.src =  'images/red.png';
+            img1.title = '红色';
+        }
+        green1.onclick = function() {
+            img1.src =  'images/green.png';
+            img1.title = '绿色';
+        }
+    </script>
+
+</body>
+</html>

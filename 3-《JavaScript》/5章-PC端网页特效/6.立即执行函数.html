@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即执行函数</title>
+    <!-- 
+        立即执行函数：不需要调用，立马能够自己执行的函数
+        
+        1.最后一个小括号可以看作调用函数
+
+        2.最大作用，能够独立创建一个作用域-局部变量
+
+     -->
+</head>
+<body>
+    <script>  
+
+        (function(a,b){
+            console.log(a+b);
+        })(1,2)   
+
+    </script>
+</body>
+</html>

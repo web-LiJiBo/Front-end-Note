@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋斗云案例</title>
+    <script src="js文件/水平animate.js"></script>
+    <!-- 
+        1.鼠标经过某个li,筋斗云跟这道当前位置
+
+        2.鼠标离开某个li,筋斗云恢复原来的位置
+
+        3.鼠标点击某个小li，筋斗云就会留在点击的位置
+     -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background-color: rgb(212, 32, 32);
+        }
+
+        .c-nav {
+            width: 900px;
+            height: 42px;
+            background: #fff url(images/图2.png) no-repeat right center;
+            margin: 100px auto;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .c-nav ul {
+            position: absolute;
+        }
+
+        .c-nav li {
+            float: left;
+            width: 83px;
+            text-align: center;
+            line-height: 42px;
+        }
+
+        .c-nav li a {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            height: 42px;
+        }
+
+        .c-nav li a:hover {
+            color: rgb(149, 7, 188);
+        }
+
+        .cloud {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 42px;
+            background: url(images/鼠标精灵.gif) no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="c_nav" class="c-nav">
+        <span class="cloud"></span>
+        <ul>
+            <li class="current"><a href="javascrit:;">首页新闻</a></li>
+            <li><a href="javascrit:;">师资力量</a></li>
+            <li><a href="javascrit:;">活动策划</a></li>
+            <li><a href="javascrit:;">企业文化</a></li>
+            <li><a href="javascrit:;">招聘信息</a></li>
+            <li><a href="javascrit:;">公司简介</a></li>
+            <li><a href="javascrit:;">山治穿行</a></li>
+            <li><a href="javascrit:;">机甲真是</a></li>
+        </ul>
+    </div>
+
+
+    <script>
+        window.addEventListener('load', function () {
+
+            var cloud = document.querySelector('.cloud');
+            var c_nav = document.querySelector('.c-nav');
+            var lis = c_nav.querySelectorAll('li');
+            var current = 0;//这个作为筋斗云的起始位置
+
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].addEventListener('mouseenter', function () {
+                    animate(cloud, this.offsetLeft);
+                })
+                lis[i].addEventListener('mouseleave', function () {
+                    animate(cloud, current);//回到起始位置
+                })
+
+                //当鼠标点击，把当前位置作为目标值
+                lis[i], addEventListener('click', function () {
+                    current = this.offsetLeft;
+                });
+            }
+
+        })
+    </script>
+</body>
+
+</html>

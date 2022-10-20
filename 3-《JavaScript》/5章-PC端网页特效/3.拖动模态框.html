@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖动模态框</title>
+    <style>
+        .box {
+            display: none;
+            width: 400px;
+            height: 240px;
+            background-color: white;
+            position: absolute;
+            top: 50px;
+            left: 30px
+        }
+
+        .mention {
+            text-align: center;
+            margin-top: 10px;
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+        }
+
+        .mention p {
+            font-size: 20px;
+            margin: 0px
+        }
+
+        .off {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px 40px;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 14px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .name,
+        .password {
+            width: 300px;
+            height: 50px;
+        }
+
+        .name span,
+        .password span {
+            width: 100px;
+            text-align: right;
+            display: inline-block;
+        }
+
+        input {
+            height: 30px;
+            width: 250px
+        }
+
+        .sub {
+            background-color: white;
+            border: 1px solid grey;
+            margin-left: 150px;
+            width: 100px;
+            height: 30px;
+            font-size: 17px;
+            margin-top: 10px;
+            border: 1px solid rgb(151, 147, 147);
+            color: brown;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            color: brown;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <h1>点击，弹出登录框</h1>
+
+        <div class="box">
+            <div class="mention">
+                <p class="wenz"> 登录会员</p>
+                <button class="off">关闭 </button>
+            </div>
+            <form action="">
+                <div class="name">
+                    <span>用户名：</span>
+                    <span><input type="text" placeholder="请输入用户名"></span>
+                </div>
+                <div class="password">
+                    <span> 登录密码：</span>
+                    <span> <input type="text" placeholder="请输入登录密码"></span>
+                </div>
+                <input type="submit" name="" id="" value="登录" class="sub">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var h1 = document.querySelector('h1')
+        //点击h1背景色变灰，登录框弹出
+        var body = document.querySelector('body')
+        var box = document.querySelector('.box')
+
+        h1.addEventListener('click', function () {
+            body.style.backgroundColor = 'grey'
+            box.style.display = 'block'
+        })
+        //点击关闭按钮 背景恢复，关闭登录框
+        var off = document.querySelector('.off')
+        off.addEventListener('click', function () {
+            body.style.backgroundColor = 'white'
+            box.style.display = 'none'
+        })
+        //鼠标放在会员的时候，箭头变成移动形状
+        var wenz = document.querySelector('.box')
+        wenz.addEventListener('mouseover', function () {
+            this.style.cursor = 'move'
+        })
+        //鼠标点击，获得点击时候相对于box个盒子的坐标
+        wenz.addEventListener('mousedown', function (e) {
+            var x = e.pageX - box.offsetLeft
+            var y = e.pageY - box.offsetTop
+            //鼠标点击之后，再鼠标移动，来更改box盒子相对于页面的位置，保证移动后的鼠标相对于盒子的坐标是不变的
+            wenz.addEventListener('mousemove', fn)
+
+            function fn(e2) {
+                box.style.top = e2.pageY - y + 'px'
+                box.style.left = e2.pageX - x + 'px'
+            }
+            //鼠标松开后，删除移动事件
+            wenz.addEventListener('mouseup', function () {
+                wenz.removeEventListener('mousemove', fn)
+            })
+
+        })
+    </script>
+</body>
+
+</html>

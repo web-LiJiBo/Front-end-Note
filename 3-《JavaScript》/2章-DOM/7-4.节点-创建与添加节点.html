@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建与添加节点</title>
+</head>
+<body>
+    <!-- 
+        （1）创建元素
+        （2）插入元素
+
+        1.document.creatElement('tagname')   创建一个元素节点
+
+        2.父.appendChild(子)   【尾添子】
+
+        3.父.insertBefore(子,指定子元素前)  【前添子】
+
+
+        【对于同一个要插入的元素，后插与前插不能同时进行】
+
+     -->
+
+     <ul>
+        <li>222</li>
+     </ul>
+
+     <script>
+        var ul = document.querySelector('ul');
+
+        var li = document.createElement('li');
+        ul.appendChild(li);
+
+        var li_last = document.createElement('li');
+        li_last.innerHTML = '111'
+        ul.insertBefore(li_last,ul.children[0]);
+     </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作元素-修改元素内容</title>
+    <!-- 
+
+        DOM操作可以改变网页内容，结构，样式，改变内容属性等
+
+     -->
+     <!-- 
+
+        操作元素-修改元素内容:
+        
+        1.element.innerText
+
+        （1）不识别HTML5标签，ie
+
+        （2）获取内容，去除html标签，空格和换行也会去掉
+
+        2.element.innerHTML(重点)
+
+        （1）识别HTML5标签，W3C
+
+        （2）获取内容，保留 html标签，空格和换行
+      -->
+     <style>
+        div,
+        p {
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            color: #ffff;
+            background-color: black;
+        }
+     </style>
+</head>
+<body>
+    <button id="btn">显示当前时间</button>
+    <div>某个时间</div>
+    <p>某个时间</p>
+    <script>
+
+        //通过触发事件改变 
+        var b = document.getElementById('btn');
+        var div = document.querySelector('div');
+        b.onclick = function() {
+            div.innerText = getDATE();
+        }
+        // 直接改变 
+        var c = document.querySelector('p');
+        p.innerHTML = getDATE();
+
+        function getDATE() {
+            var date1 = new Date();
+            var year = date1.getFullYear();
+            var month = date1.getMonth();
+            var day = date1.getDate();
+            var Day_ = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+            var Day = Day_[date1.getDay()];
+            return '今天是'+year+'年'+(month+1)+'月'+day+'日'+Day;
+        }
+
+    </script>
+</body>
+</html>

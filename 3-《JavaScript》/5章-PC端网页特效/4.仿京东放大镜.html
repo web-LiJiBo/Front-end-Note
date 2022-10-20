@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿京东放大镜</title>
+    <style>
+        .box {
+            position: relative;
+            height: 300px;
+            width: 534px;
+            border: 1px solid #ccc;
+            text-align: center;   
+            margin-top: 100px;
+        }
+        .img1 {
+            vertical-align: middle;
+            height:300px;
+        }
+        .img2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            vertical-align: middle;
+            height:600px;
+        }
+        .mask {
+            position: absolute;
+            display: none;
+            height: 150px;
+            width: 150px;
+            background-color: rgba(255, 255, 0, 0.501);
+            cursor: move;
+            
+        }
+        .show {
+            position: absolute;
+            display: none;
+            height: 300px;
+            width: 300px;
+            border: 2px dotted red;
+            overflow: hidden;
+            text-align: center;
+            left: 610px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="mask"></div>
+        <img src="images/图1.jpg" alt="" class="img1">
+        <div class="show">
+            <img src="images/图1.jpg" alt=""  class="img2">
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load',function(){
+            var box = document.querySelector('.box');
+            var mask = document.querySelector('.mask');
+            var show = document.querySelector('.show');
+            var img2 = document.querySelector('.img2');
+
+            box.addEventListener('mouseover',function(){
+                mask.style.display = 'block';
+                show.style.display = 'block';
+            })
+            box.addEventListener('mouseout',function(){
+                mask.style.display = 'none';
+                show.style.display = 'none';
+            })
+            box.addEventListener('mousemove',function(e){
+                var x = e.pageX - this.offsetLeft;
+                var y = e.pageY - this.offsetTop;
+                var maskx = x - (mask.offsetWidth/2);
+                var masky = y - (mask.offsetWidth/2);
+                if(maskx<=0){
+                    maskx = 0;
+                } else if(maskx>=(box.offsetWidth-mask.offsetWidth)) {
+                    maskx = box.offsetWidth-mask.offsetWidth;
+                }
+                if(masky<=0){
+                    masky = 0;
+                } else if(masky>=(box.offsetHeight-mask.offsetHeight)) {
+                    masky = box.offsetHeight-mask.offsetHeight;
+                }
+                mask.style.left = maskx + 'px';
+                mask.style.top = masky + 'px';
+
+                //大图片的移动距离 = 遮挡层移动距离 * 大图片最大移动距离 / 遮挡层最大移动距离
+                var maxmask = box.offsetHeight-mask.offsetHeight;
+                var maxshow = img2.offsetHeight-show.offsetHeight;
+
+                //大图片最大移动距离x
+                var img2x = maskx*maxshow/maxmask;
+                //大图片最大移动距离y
+                var img2y = masky*maxshow/maxmask;
+                img2.style.left = -img2x + 'px';
+                img2.style.top = -img2y + 'px';
+            })
+        })
+    </script>
+</body>
+</html>

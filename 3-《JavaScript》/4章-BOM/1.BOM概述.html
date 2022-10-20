@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM概述</title>
+    <!-- 
+
+        1.BOM(浏览器对象模型)。他提供独立于内容而与浏览器窗口进行交互的对象，其核心对象是window
+
+        2.BOM 由一系列对象组成，并且每个对象提供了很多方法和属性
+
+        3.把浏览器当作一个对象看待，顶级对象是window
+
+        4.BOM学习的是浏览器窗口交互的一些对象，兼容性较差
+
+        
+
+     -->
+     <!-- 
+        《window》
+
+        1.window:（1）document（2）location（3）navigation（4）screen（5）history
+
+        2.他是一个全局对象，定义在全局作用的变量，函数都会变为window的对象属性和方法，可省略
+
+      -->
+</head>
+<body>
+    <script>
+
+        //num自动化为window的对象，函数fn()自动化为window的方法
+        var num = 10;
+        console.log(num);
+        console.log(window.num);
+
+        function fn() {
+            console.log(11);
+        }
+        fn();
+        window.fn();
+        //不建议用name名
+    </script>
+</body>
+</html>

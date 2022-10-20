@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器-setTimeout()</title>
+    <!-- 
+
+        1.window.setTimeout()
+
+        （1）setTimeout(调用函数 ,延迟的毫秒数(省略默认为零))
+        
+        （2）setTimeout()方法用于设置一个定时器，该定时器在到期后执行该函数
+
+        （3）可以省略写成 setTimeout()
+
+     -->
+</head>
+<body>
+    <script>
+        //1.直接写函数
+        setTimeout(function(){
+            console.log('时间到了');
+        },10000);
+
+        //2.函数写到外面
+        function callback() {
+            console.log('爆炸了');
+        }
+        setTimeout(callback,3000);
+
+        //3.给定时器起名字
+        var time1 = setTimeout(function(){
+            console.log('time1');
+        },6000)
+    </script>
+</body>
+</html>

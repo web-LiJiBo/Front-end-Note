@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父节点与子节点</title>
+
+</head>
+<body>
+    
+    <div>我是div</div>
+    <span>我是span</span>
+    <ul>
+       <li>我是li</li>
+       <li>我是li</li>
+       <li>我是li</li>
+       <li>我是li</li>
+    </ul>
+    <ol>
+       <li>1111</li>
+       <li>2222</li>
+       <li>3333</li>
+       <li>4444</li>
+    </ol>
+    <div class="demo">
+        <div class="box">
+            <span class="erweima">x</span>
+         </div>
+    </div>
+
+    <script>
+        /*
+            1.父节点(亲爸爸) parentNode
+
+            2.element.parentNode  得到element的父元素的元素对象
+        */ 
+        var erweima = document.querySelector('.erweima');
+        console.log(erweima.parentNode);
+
+        /*
+
+            1.element.children   所有子元素节点,用伪数组来存这些数据
+
+        */
+       var ul = document.querySelector('ul');
+       console.log(ul.children);
+
+        /*
+            获得第一个子元素和最后一个子元素
+
+            1.firstElementChild 第一个子元素节点
+
+            2.lastElementChild 最后一个子元素节点
+        */
+       var ol = document.querySelector('ol');
+
+       console.log(ol.firstElementChild);
+       console.log(ol.children[1]);
+       console.log(ol.lastElementChild);
+    </script>
+</body>
+</html>

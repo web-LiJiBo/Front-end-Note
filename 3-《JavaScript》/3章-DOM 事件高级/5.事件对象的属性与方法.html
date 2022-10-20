@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的属性与方法</title>
+    <!-- 
+
+        1.event.target    返回触发事件的 对象
+
+        2.event.type    返回事件的类型（click，mouseover等）
+
+        3.event.preventDefault()    阻止默认事件(默认行为) 比如：不让链接跳转
+
+        4.event.stopProagation()    阻止冒泡标准
+
+     -->
+</head>
+<body>
+    <div>123</div>
+    <ul>
+        <li>abc</li>
+        <li>abc</li>
+        <li>abc</li>
+    </ul>
+
+    <script>
+        //常见事件对象的属性和放法
+        var div = document.querySelector('div');
+        div.addEventListener('click',function(event){
+            console.log(event.target);
+        })
+
+        /*
+            【注意】：
+            （1）event.target 返回触发事件对象(元素)  
+            
+            （2）this返回的是绑定事件的对象(元素)
+        */
+       var ul = document.querySelector('ul');
+       ul.addEventListener('click',function(event){
+           //ul绑定了事件 那么this就执指向ul
+           console.log(this);
+           //触发了li 那么target就指向li
+           console.log(event.target);
+
+           console.log(event.type);
+       })
+    </script>
+</body>
+</html>

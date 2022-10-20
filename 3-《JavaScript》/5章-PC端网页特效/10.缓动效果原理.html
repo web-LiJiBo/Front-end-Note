@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓动效果原理</title>
+    <!-- 
+        缓动效果原理:让元素运动速度有所变化，最常见的是让速度慢慢停下来
+
+        1.让盒子每次移动的距离慢慢变小，速度慢慢落下来
+
+        2.每次运动的步长：(目标值-现在的位置)/10
+
+        3.停止条件：让当前盒子位置等于目标位置就停止定时器
+     -->
+     <style>
+        div {
+            position:absolute;
+            left: 0;
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+     </style>
+</head>
+<body>
+    <button class="btn1">前进800</button>
+    <button class="btn2">后退到0</button>
+    <div></div>
+
+    <script>
+        //步长值=(sum-obj.offsetLeft)/10 ， 为了避免bug存在，将步长值改为整数
+        var div = document.querySelector('div');
+        var btn1 = document.querySelector('.btn1');
+        var btn2 = document.querySelector('.btn2');
+
+        //可以将回调函数 callback 当作参数
+        function antimate(obj,sum,callback){
+            //先删除原来的属性，防抖
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(function(){   
+
+                //如果有参数传过来，就执行
+                if(callback){
+                    callback();
+                }
+
+                if(obj.offsetLeft == sum){
+                    clearInterval(obj.timer);
+                    //修改后退时路程变化bug
+                } else if((sum-obj.offsetLeft)<=0) {
+                    obj.style.left = obj.offsetLeft + Math.floor((sum-obj.offsetLeft)/10) + 'px';
+                } else if((sum-obj.offsetLeft)>=0) {
+                    obj.style.left = obj.offsetLeft + Math.ceil((sum-obj.offsetLeft)/10) + 'px';
+                }
+            },50)
+        }
+        btn1.addEventListener('click',function(){
+            antimate(div,800,function(){
+                if(div.offsetLeft==800) {
+                    div.style.backgroundColor = '#ccc';
+                }
+            });
+        })
+        
+        btn2.addEventListener('click',function(){
+            antimate(div,0,function(){
+                if(div.offsetLeft==0) {
+                    div.style.backgroundColor = 'blue';
+                }
+            });
+        })
+    </script>
+</body>
+</html>
