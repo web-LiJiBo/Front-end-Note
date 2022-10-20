@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+    <script>
+        /*
+        
+            函数的使用分为两步：（1）声明函数 和 （2）调用函数
+
+            （1）声明函数
+
+                function 函数名(形参1，形参2...) {
+                    函数体
+                    return num;
+                }
+                [注意]  1.形参不需要声明
+                       2.如果实参个数>形参个数,取前面的
+                       3.如果实参个数<形参个数,NaN  （数+undefined=NaN）
+
+            （2）调用函数
+
+                函数名(实参1，实参2...)
+
+                
+             (3) 函数表达式（匿名函数，存的是函数）
+                var fun = function(aru) {
+                console.log('pink');
+                console.log(aru);
+             }
+                 fun('red');
+
+
+             (4)  fn()---返回函数的值
+                  fn----返回函数本身
+                
+        */
+
+        
+       /*
+       
+            《arguments的使用》
+
+            1.arguments 是当前函数的内置对象，[存储]了传递过来的所有实参。
+
+            2.arguments 相当于伪数组（1）具有length属性 （2）按索引存储数据 （3）不具有push,pop等方法
+       
+       */
+
+       //1.
+       function max(arr) {          //arr 接收一个数组
+            var max_num = arr[0];
+            for(var i=0;i<arr.length;i++){
+                if(max_num<arr[i]){
+                    max_num=arr[i];
+                }
+            }
+            return max_num;
+       }
+       
+        var arr1 =  [5,3,2,6,8,1,0,9];
+        console.log(max(arr1));
+
+
+        //2.
+        function lee() {
+            console.log(arguments);
+            console.log(arguments.length);
+            console.log(arguments[1]);
+        }
+        lee(1,2,3);
+        console.log(lee)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

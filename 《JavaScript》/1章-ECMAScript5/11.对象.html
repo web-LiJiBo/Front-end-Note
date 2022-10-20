@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象（结构体）</title>
+    <script>
+        /*
+                          
+            对象由【属性】(包括属性名和属性值)和【方法】组成的集合
+
+            3种方法创建对象：（1）利用字面创建对象：
+
+                                        //创建对象
+
+                                            var obj = {}   //创建了一个空对象
+
+                                            var obj = {    //创建了一个对象
+                                                uname:'张三丰',
+                                                age:'18',
+                                                sex:'男',
+                                                sayHi:function() {
+                                                    console.log('hi~');
+                                                }
+                                            }
+
+                                            [1]:属性名(键)：属性值(值)
+                                            [2]:多个属性之间，逗号隔开
+                                            [3]:方法冒号后面跟的是匿名函数
+
+
+                                        //使用对象
+                                        
+                                        （1)调用对象的属性，我们采用 对象名.属性名
+                                            
+                                            console.log(obj.uname);
+
+                                        （2）对象名['属性名']
+                                            
+                                            console.log(obj['age']);
+
+                                         (3) 调用对象内而的 方法 属性
+
+                                            obj.sayHi();
+
+
+                            （2）利于 new Object创建对象
+                                        
+                                            var obj = new Object();
+                                                obj.uname='张三丰';
+                                                obj.age='18';
+                                                obj.sex='男';
+
+                                                obj.sayHi = function() {
+                                                    console.log('hi~');
+                                                }
+                                            
+                            （3）利于 构造函数 创建对象
+                                                
+                                                function 构造函数名() {
+                                                    this.属性 = 值;
+                                                    this.方法 = function() {  }
+                                                }
+                                                new 构造函数名();
+        
+        */
+
+        //构造函数
+        function Star(name1,age1,sex1) {
+            this.name = name1;
+            this.age = age1;
+            this.sex = sex1; 
+
+            this.Sing = function(sang) {
+                console.log(sang);
+            }
+        }
+        //创建对象
+        var ldh = new Star('刘德华',18,'男');
+
+        var zxy = new Star('张学友',19,'男');
+
+        zxy.Sing('《李香兰》');
+        
+        //-----------------------------------------------------------------------------------------
+        /*
+            Object.keys(obj) 用于获取对象自身所有属性,存入数组
+        */
+
+        var obj = {
+            id:1,
+            pname:'小米',
+            price:1999,
+            num:2000
+        }
+        var arr = Object.keys(obj)
+        console.log(arr);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

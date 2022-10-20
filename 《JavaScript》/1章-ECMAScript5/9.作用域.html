@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域-作用域链</title>
+    <script>
+        /*
+            (es6之前)
+
+            1.全局作用域：整个script,一个单独的JS文件 | 
+              全局变量: 在函数内部没有声明直接赋值的变量
+
+            2.局部作用域：在函数内部 | 函数的形参也可以是局部变量
+              局部变量: 函数的形参也可以是局部变量
+
+            3.块级作用域：大括号{  }
+
+            ---------------------------------------------------------------
+
+            4.内部函数 可以访问外部 函数变量，逐步向外层查找（作用域链）
+
+         */
+
+        var num = 10;
+
+        function fn() {      //外部函数
+            function fun() {
+                console.log(num);    //内部函数
+            }
+            fun();
+        }
+        fn();
+
+        //------------------------------------------------------------
+        
+        var num1 = 1111;
+        function fn1() {      //外部函数
+            var num1 = 100;
+            function fun1() {
+                console.log(num1);    //内部函数
+            }
+            fun1();
+        }
+        fn1();           //结果100
+
+
+        var a = 1
+        console.log(a)
+        if(true) {
+            a = 2
+            a = 3
+            console.log(a)
+
+            function a() { }
+
+            a = 4
+            console.log(a)
+        }
+        console.log(a)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
